@@ -1,0 +1,86 @@
+﻿@model AActivity.Models.SchedulingTripDetail
+
+<li>
+
+    <i class="fa fa-calendar-alt bg-blue"></i>
+    <div class="timeline-item">
+
+        <h3 class="timeline-header">
+            <i class="fas fa-calendar-alt"></i>
+             حجز الرحلة
+        </h3>
+
+        <div class="timeline-body">
+         
+            <ul class="list-group  text-primary">
+                @if (Model.TripBookings.Any())
+                {
+                    
+                    @foreach (var book in Model.TripBookings.Take(1))
+                    {
+                <li class="list-group-item text-primary">
+                
+                    <div class="row ">
+
+                        <h5 class="col-md-3">
+                            <em><i>المدينة</i></em> :
+                            <span> @book.City.LocationName</span>
+
+                        </h5>
+
+                        <h5 class="col-md-3">
+                            <em><i>نوع الرحلة</i></em> :
+                            <span> @book.SchedulingTripDetail.TripType.Name</span>
+                        </h5>
+
+                        <h5 class="col-md-3">
+                            <em><i> عدد الأيام</i></em> :
+                            <span> @book.TripQtyDays</span>
+                        </h5>
+
+                        <h5 class="col-md-3">
+                            <em><i> المكان </i></em> :
+                            <span> @book.TripLocationName</span>
+                        </h5>
+
+
+                      
+                    </div>
+                </li>
+
+                   
+                    }
+
+
+
+
+                    <li class="list-group-item">
+                        <a class="btn  btn-primary btn-lg"
+                           asp-action="Create" asp-controller="TripBookings" asp-route-tripId="@Model.Id">
+                            <i class="fas fa-plus"></i>
+                            تعديل
+                        </a>
+
+
+
+                    </li>
+                }
+                else
+                {
+                    <li class="list-group-item">
+                        <a class="btn  btn-primary btn-lg"
+                           asp-action="Create" asp-controller="TripBookings" asp-route-tripId="@Model.Id">
+                            <i class="fas fa-plus"></i>
+                            احجز الآن
+                        </a>
+
+
+
+                    </li>
+                }
+
+            </ul>
+        </div>
+
+    </div>
+</li>
